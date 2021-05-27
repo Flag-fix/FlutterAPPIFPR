@@ -1,31 +1,20 @@
 
 
-void main() {
+void main(List<String> args) {
 
-  String nome = "Informe seu Nome";
-  String cargo = "Informe seu cargo";
+  List<String> batata = ['Ração','Comida','Legume','Carne', "Vegetação"];
 
-  var qqCoisa = "Isso é um Texto"; //String
-  var qqCoisa1 = 1;
 
-  int num = 50;
+  while(batata.length > 1){
+    //Adicioonando Var na Lista Batata
+    batata.add("Rinoceronte");
+    batata.add("Ornitorrinco");
 
-  if(num > 10){
-    print("Esse número é maior q 10");
-  }else{
-    print("Esse número é menor q 10");
+    //Removendo Itens da Lista Batata
+    batata.forEach((element) {
+      batata.remove(element);
+      print("Removendo Itens da Lista Batata");
+    });
   }
-
-  if(qqCoisa1 == qqCoisa){
-    print("É igual");
-  }
-
-  List<String> acessos;
-
-  Map<String, dynamic> Mapzin()=> {
-    'acessos': acessos.map
-  };
-
-  Mapzin();
 
 }
