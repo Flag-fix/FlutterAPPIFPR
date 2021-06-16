@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/data/data.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -13,6 +15,8 @@ class _PessoaFormState extends State<PessoaForm> {
   final _form = GlobalKey<FormState>();
 
   DateTime currentDate;
+
+  var nome, contato, referencia,foto, currentData;
 
   var tel = MaskTextInputFormatter(mask: '(##) # ####-####');
   var ref = MaskTextInputFormatter(mask: 'Ref-######');
@@ -48,11 +52,12 @@ class _PessoaFormState extends State<PessoaForm> {
             IconButton(
                 icon: Icon(Icons.save),
                 onPressed: () {
-                  _form.currentState.save();
-                  if (_contact.nome.isNotEmpty) {
-                    lista.add(_contact);
-                    _contact = Pessoa();
-                  }
+                  salvar();
+                  // _form.currentState.save();
+                  // if (_contact.nome.isNotEmpty) {
+                  //   lista.add(_contact);
+                  //   _contact = Pessoa();
+                  // }
                   Navigator.of(context).pushNamed('lista');
                 })
           ],
@@ -64,14 +69,20 @@ class _PessoaFormState extends State<PessoaForm> {
               child: Column(
                 children: [
                   TextFormField(
-                      onSaved: (value) => _contact.nome = value,
+                      onSaved: (value) => nome = value,
+                      onChanged: (value){
+                        nome = value;
+                      },
                       decoration: InputDecoration(
                           labelText: 'Insira um Nome:',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)))),
                   SizedBox(height: 15),
                   TextFormField(
-                      onSaved: (value) => _contact.contato = value,
+                      onSaved: (value) => contato = value,
+                      onChanged: (value){
+                        contato = value;
+                      },
                       keyboardType: TextInputType.phone,
                       inputFormatters: [tel],
                       decoration: InputDecoration(
@@ -81,14 +92,20 @@ class _PessoaFormState extends State<PessoaForm> {
                               borderRadius: BorderRadius.circular(15)))),
                   SizedBox(height: 15),
                   TextFormField(
-                      onSaved: (value) => _contact.foto = value,
+                      onSaved: (value) => foto = value,
+                      onChanged: (value){
+                        foto = value;
+                      },
                       decoration: InputDecoration(
                           labelText: 'URL',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)))),
                   SizedBox(height: 15),
                   TextFormField(
-                      onSaved: (value) => _contact.referencia = value,
+                      onSaved: (value) => referencia = value,
+                      onChanged: (value){
+                        referencia = value;
+                      },
                       inputFormatters: [ref],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -107,12 +124,22 @@ class _PessoaFormState extends State<PessoaForm> {
                             borderRadius: BorderRadius.circular(15)),
                         labelText: getText()),
                     onSaved: (value) {
-                      _contact.data = value;
+                      currentData = value;
                       print(value);
                     },
                   ),
                 ],
               )),
         ));
+  }
+
+  Future salvar() async {
+    final itens = NewPessoa(
+        nome: nome,
+        referencia: referencia,
+        data: currentDate,
+        foto: foto,
+        contato: contato);
+    await DatabaseApp.instance.insereDadosPessoa(itens);
   }
 }

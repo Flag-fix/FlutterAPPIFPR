@@ -10,3 +10,6 @@ class Pessoa{
   // Usado para converter data em String
   // DateTime.parse(json[ENTRADA_SAIDA] as String
 }
+
+
+

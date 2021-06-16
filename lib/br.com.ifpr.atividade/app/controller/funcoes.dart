@@ -10,10 +10,10 @@ class Funcoes{
     return user;
   }
 
-  Future<List> pegarDadosBiblioteca(String livros) async {
-    await Future.delayed(Duration(milliseconds: 3000));
-    gerson = '{"Pocahontas", "Imalaia", "Pistão", "Glamour"}';
-  }
+  // Future<List> pegarDadosBiblioteca(String livros) async {
+  //   await Future.delayed(Duration(milliseconds: 3000));
+  //   gerson = '{"Pocahontas", "Imalaia", "Pistão", "Glamour"}';
+  // }
 
   Future<void> fazerLogin() async {
     //Aguarda a função que fará contato para retornar o nome do usuário
