@@ -1,9 +1,27 @@
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/data/data.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
 import 'package:flutter/material.dart';
 
-class PessoaList extends StatelessWidget {
-  var _list = lista;
+class PessoaList extends StatefulWidget {
+  @override
+  _PessoaListState createState() => _PessoaListState();
+}
+
+class _PessoaListState extends State<PessoaList> {
+  var _list = [];
+
+  Future pegarLista() async{
+    var resultado = await DatabaseApp.instance.buscarTodasPessoas();
+    setState(() {
+      _list = resultado;
+    });
+  }
+
+  @override
+  void initState() {
+    pegarLista();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +31,22 @@ class PessoaList extends StatelessWidget {
                 actions: [
                   IconButton(
                       icon: Icon(Icons.add),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('form');
+                      onPressed: () async{
+                        await Navigator.of(context).pushNamed('form');
+                        await pegarLista();
                       })
                 ],
               ),
-              body: ListView.builder(
+              body: ListView.separated(
+                separatorBuilder: (context, index)=> Divider(color: Colors.black,),
+                padding: const EdgeInsets.all(2.0),
                 itemCount: _list.length,
-                itemBuilder: (_, indice) {
-                  Pessoa contact = _list[indice];
-                  final avatar = contact.foto.isEmpty  ? CircleAvatar(child: Icon(Icons.person)) : CircleAvatar(  backgroundImage: NetworkImage(contact.foto));
+                itemBuilder: (context, i) {
+                  final avatar = _list[i].foto.isEmpty  ? CircleAvatar(child: Icon(Icons.person)) : CircleAvatar(  backgroundImage: NetworkImage(_list[i].foto));
                   return ListTile(
                     leading: avatar,
-                    title: Text(contact.nome, style: TextStyle(fontWeight: FontWeight.bold,),),
-                    subtitle: Text('Ref-'+contact.referencia),
+                    title: Text(_list[i].nome, style: TextStyle(fontWeight: FontWeight.bold,),),
+                    subtitle: Text('Ref-'+_list[i].referencia),
                   );
                 },
               ));
