@@ -47,6 +47,15 @@ class _PessoaListState extends State<PessoaList> {
                     leading: avatar,
                     title: Text(_list[i].nome, style: TextStyle(fontWeight: FontWeight.bold,),),
                     subtitle: Text('Ref-'+_list[i].referencia),
+                    trailing: Container(
+                      width: 100,
+                      child: Row(
+                        children: [
+                          IconButton(icon: Icon(Icons.edit), onPressed: null),
+                          IconButton(icon: Icon(Icons.delete), onPressed: null),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ));

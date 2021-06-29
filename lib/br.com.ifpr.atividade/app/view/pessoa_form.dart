@@ -3,6 +3,7 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/data/data.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -13,6 +14,8 @@ class PessoaForm extends StatefulWidget {
 
 class _PessoaFormState extends State<PessoaForm> {
   final _form = GlobalKey<FormState>();
+  var avatar = "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png";
+  PessoaService service = PessoaService();
 
   DateTime currentDate;
 
@@ -138,8 +141,8 @@ class _PessoaFormState extends State<PessoaForm> {
         nome: nome,
         referencia: referencia,
         data: currentDate,
-        foto: foto,
+        foto: foto == null ? foto = avatar : foto = null,
         contato: contato);
-    await DatabaseApp.instance.insereDadosPessoa(itens);
+    await service.salvar(itens);
   }
 }
