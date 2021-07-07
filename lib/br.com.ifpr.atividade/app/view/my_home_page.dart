@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../controle_main.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
+  final controle = ControleMain();
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
