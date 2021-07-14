@@ -24,7 +24,7 @@ abstract class _PessoaListBack with Store{
   }
 
   goToForm(BuildContext context, [NewPessoa pessoa]){
-    Navigator.of(context).pushNamed('lista',arguments: pessoa).then(updateLista);
+    Navigator.of(context).pushNamed('form',arguments: pessoa).then(updateLista);
   }
 
   remove(int id){

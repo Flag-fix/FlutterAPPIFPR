@@ -13,7 +13,7 @@ class DatabaseApp{
 
   Future<Database> get database async{
     if(_database != null) return _database;
-    _database = await _initDB('bancoLocal.db');
+    _database = await _initDB('bancoLocall.db');
     return _database;
   }
 

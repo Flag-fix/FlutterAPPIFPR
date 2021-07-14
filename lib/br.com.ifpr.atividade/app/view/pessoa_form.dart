@@ -44,7 +44,6 @@ class _PessoaFormState extends State<PessoaForm> {
       return DateFormat('dd/MM/yyyy').format(currentDate);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     Pessoa _contact = new Pessoa();
@@ -56,11 +55,6 @@ class _PessoaFormState extends State<PessoaForm> {
                 icon: Icon(Icons.save),
                 onPressed: () {
                   salvar();
-                  // _form.currentState.save();
-                  // if (_contact.nome.isNotEmpty) {
-                  //   lista.add(_contact);
-                  //   _contact = Pessoa();
-                  // }
                   Navigator.of(context).pushNamed('lista');
                 })
           ],
@@ -141,7 +135,7 @@ class _PessoaFormState extends State<PessoaForm> {
         nome: nome,
         referencia: referencia,
         data: currentDate,
-        foto: foto == null ? foto = avatar : foto = null,
+        foto: foto == null || foto == "" ? foto = avatar : foto = null,
         contato: contato);
     await service.salvar(itens);
   }

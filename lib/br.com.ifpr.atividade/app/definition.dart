@@ -1,3 +1,4 @@
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/new_pessoa_form.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/pessoa_form.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/pessoa_list.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/my_home_page.dart';
@@ -14,7 +15,8 @@ class Definition extends StatelessWidget {
       routes: {
         '/': (_) => MyHomePage(),
         'lista': (_) => PessoaList(),
-        'form': (_) => PessoaForm()
+/*        'form': (_) => PessoaForm()*/
+        'form': (_) => NewPessoaForm()
       },
     );
   }

@@ -15,12 +15,8 @@ class _PessoaListState extends State<PessoaList> {
   final _back = PessoaListBack();
 
   CircleAvatar avatar(String url){
-    try{
-      return CircleAvatar(backgroundImage: NetworkImage(url));
-    }catch(e){
-      return CircleAvatar(child: Icon(Icons.person));
+    return (Uri.tryParse(url).isAbsolute) ? CircleAvatar(backgroundImage: NetworkImage(url)) : CircleAvatar(child: Icon(Icons.person));
     }
-  }
 
   Widget editar(Function editar){
     return IconButton(onPressed: editar, icon: Icon(Icons.edit),color: Colors.deepOrange);
