@@ -18,19 +18,19 @@ class NewPessoa {
   static final String DATA = 'data';
 
   final int id;
-  final String nome;
-  final String contato;
-  final String foto;
-  final String referencia;
-  final DateTime data;
+  String nome;
+  String contato;
+  String foto;
+  String referencia;
+  DateTime data;
 
-  const NewPessoa(
+  NewPessoa(
       {this.id,
-      this.nome,
       this.contato,
       this.foto,
       this.referencia,
-      this.data});
+      this.data,
+      this.nome});
 
   NewPessoa copy({
     int id,

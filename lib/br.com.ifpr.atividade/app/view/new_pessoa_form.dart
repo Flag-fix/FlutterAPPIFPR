@@ -4,10 +4,14 @@ import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class NewPessoaForm extends StatelessWidget {
-  const NewPessoaForm({Key key}) : super(key: key);
+  NewPessoaForm({Key key}) : super(key: key);
+
+  final _form = GlobalKey<FormState>();
 
   Widget fieldName(PessoaFormBack back) {
     return TextFormField(
+      validator: back.validacaoNome,
+        onSaved: (newValue)=> back.pessoa.nome = newValue,
       initialValue: back.pessoa.nome,
         decoration: InputDecoration(
             labelText: 'Insira um Nome:',
@@ -18,6 +22,8 @@ class NewPessoaForm extends StatelessWidget {
   Widget fieldTelefone(PessoaFormBack back) {
     var tel = MaskTextInputFormatter(mask: '(##) # ####-####');
     return TextFormField(
+        validator: back.validacaoTelefone,
+        onSaved: (newValue)=> back.pessoa.contato = newValue,
         initialValue: back.pessoa.contato,
         keyboardType: TextInputType.phone,
         inputFormatters: [tel],
@@ -30,6 +36,7 @@ class NewPessoaForm extends StatelessWidget {
 
   Widget fieldFoto(PessoaFormBack back) {
     return TextFormField(
+        onSaved: (newValue)=> back.pessoa.foto = newValue,
       initialValue: back.pessoa.foto,
         decoration: InputDecoration(
             labelText: 'URL',
@@ -40,6 +47,8 @@ class NewPessoaForm extends StatelessWidget {
   Widget fieldReferencia(PessoaFormBack back) {
     var ref = MaskTextInputFormatter(mask: 'Ref-######');
     return TextFormField(
+        validator: back.validacaoReferencia,
+        onSaved: (newValue)=> back.pessoa.referencia = newValue,
       initialValue: back.pessoa.referencia,
         inputFormatters: [ref],
         keyboardType: TextInputType.number,
@@ -50,9 +59,10 @@ class NewPessoaForm extends StatelessWidget {
   }
 
   Widget fieldData(PessoaFormBack back) {
-    var data = MaskTextInputFormatter(mask: '##/##/####');
+    var data = MaskTextInputFormatter(mask: '########');
     return TextFormField(
-      initialValue: DateFormat('dd/MM/yyyy').format(back.pessoa.data),
+        onSaved: (newValue)=> back.pessoa.data = DateTime.parse(newValue),
+    initialValue: back.pessoa.data.toString(),
         keyboardType: TextInputType.datetime,
         inputFormatters: [data],
         decoration: InputDecoration(
@@ -72,13 +82,20 @@ class NewPessoaForm extends StatelessWidget {
           IconButton(
               icon: Icon(Icons.save),
               onPressed: () {
-                Navigator.of(context).pushNamed('lista');
+                _form.currentState.validate();
+                _form.currentState.save();
+                if(_back.isValid){
+                  _back.salvar();
+/*                  Navigator.of(context).pop();*/
+                  Navigator.of(context).pushNamed('lista');
+                }
               })
         ],
       ),
       body: Padding(
         padding: EdgeInsets.all(15),
         child: Form(
+          key: _form,
           child: Column(
             children: [
               fieldName(_back),
