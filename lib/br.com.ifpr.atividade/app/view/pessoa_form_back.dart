@@ -2,13 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
-import 'package:mobx/mobx.dart';
 
-part 'pessoa_form_back.g.dart';
-
-class PessoaFormBack = _PessoaFormBack with _$PessoaFormBack;
-
-abstract class _PessoaFormBack with Store{
+class PessoaFormBack{
 
   var _service = DatabaseApp.instance;
   var _validate = PessoaService();
@@ -16,12 +11,11 @@ abstract class _PessoaFormBack with Store{
   bool _phoneIsValid;
   bool _referenciaIsValid;
 
-  @action
   bool get isValid =>_nameIsValid && _phoneIsValid && _referenciaIsValid;
 
   NewPessoa pessoa;
 
-  _PessoaFormBack(BuildContext context){
+  PessoaFormBack(BuildContext context){
     var param = ModalRoute.of(context).settings.arguments;
     pessoa = (param == null) ? NewPessoa() : param;
   }

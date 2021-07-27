@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'br.com.ifpr.atividade/app/definition.dart';
+import 'br.com.ifpr.atividade/app/my_app.dart';
 
 void main() {
-  runApp(Definition());
+  runApp(MyApp());
 }
 

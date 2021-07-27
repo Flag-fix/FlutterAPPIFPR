@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:mobx/mobx.dart';
 import 'app/database/dataBaseConnection.dart';
+import 'app/my_app.dart';
 
 part 'pessoa_list_back.g.dart';
 
@@ -24,7 +25,11 @@ abstract class _PessoaListBack with Store{
   }
 
   goToForm(BuildContext context, [NewPessoa pessoa]){
-    Navigator.of(context).pushNamed('form',arguments: pessoa).then(updateLista);
+    Navigator.of(context).pushNamed(MyApp.PESSOA_FORM,arguments: pessoa).then(updateLista);
+  }
+
+  goToDetails(BuildContext context, NewPessoa pessoa){
+    Navigator.of(context).pushNamed(MyApp.PESSOA_DETAILS,arguments: pessoa);
   }
 
   remove(int id){

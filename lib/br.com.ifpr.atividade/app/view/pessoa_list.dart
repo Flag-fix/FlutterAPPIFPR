@@ -3,6 +3,7 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnecti
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
 import 'package:flutter/material.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/my_app.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/pessoa_list_back.dart';
 
 class PessoaList extends StatefulWidget {
@@ -53,7 +54,7 @@ class _PessoaListState extends State<PessoaList> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () async {
-                  await Navigator.of(context).pushNamed('form');
+                  _back.goToForm(context);
                 })
           ],
         ),
@@ -78,6 +79,9 @@ class _PessoaListState extends State<PessoaList> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          onTap: (){
+                            _back.goToDetails(context,_list[i]);
+                          },
                           subtitle: Text('Ref-' + _list[i].referencia),
                           trailing: Container(
                             width: 100,
