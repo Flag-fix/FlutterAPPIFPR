@@ -55,4 +55,10 @@ class PessoaService{
     }
   }
 
+  validarData(String data){
+    if(data == null){
+      throw new DomainLayerException("Data é Obrigatória");
+    }
+  }
+
 }

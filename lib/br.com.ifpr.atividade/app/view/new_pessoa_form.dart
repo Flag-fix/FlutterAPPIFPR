@@ -3,16 +3,25 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/pessoa_form_back.dar
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class NewPessoaForm extends StatelessWidget {
+import '../my_app.dart';
+
+class NewPessoaForm extends StatefulWidget {
   NewPessoaForm({Key key}) : super(key: key);
 
+  @override
+  _NewPessoaFormState createState() => _NewPessoaFormState();
+}
+
+var data = MaskTextInputFormatter(mask: '########');
+
+class _NewPessoaFormState extends State<NewPessoaForm> {
   final _form = GlobalKey<FormState>();
 
   Widget fieldName(PessoaFormBack back) {
     return TextFormField(
-      validator: back.validacaoNome,
-        onSaved: (newValue)=> back.pessoa.nome = newValue,
-      initialValue: back.pessoa.nome,
+        validator: back.validacaoNome,
+        onSaved: (newValue) => back.pessoa.nome = newValue,
+        initialValue: back.pessoa.nome,
         decoration: InputDecoration(
             labelText: 'Insira um Nome:',
             border:
@@ -23,7 +32,7 @@ class NewPessoaForm extends StatelessWidget {
     var tel = MaskTextInputFormatter(mask: '(##) # ####-####');
     return TextFormField(
         validator: back.validacaoTelefone,
-        onSaved: (newValue)=> back.pessoa.contato = newValue,
+        onSaved: (newValue) => back.pessoa.contato = newValue,
         initialValue: back.pessoa.contato,
         keyboardType: TextInputType.phone,
         inputFormatters: [tel],
@@ -36,8 +45,8 @@ class NewPessoaForm extends StatelessWidget {
 
   Widget fieldFoto(PessoaFormBack back) {
     return TextFormField(
-        onSaved: (newValue)=> back.pessoa.foto = newValue,
-      initialValue: back.pessoa.foto,
+        onSaved: (newValue) => back.pessoa.foto = newValue,
+        initialValue: back.pessoa.foto,
         decoration: InputDecoration(
             labelText: 'URL',
             border:
@@ -48,8 +57,8 @@ class NewPessoaForm extends StatelessWidget {
     var ref = MaskTextInputFormatter(mask: 'Ref-######');
     return TextFormField(
         validator: back.validacaoReferencia,
-        onSaved: (newValue)=> back.pessoa.referencia = newValue,
-      initialValue: back.pessoa.referencia,
+        onSaved: (newValue) => back.pessoa.referencia = newValue,
+        initialValue: back.pessoa.referencia,
         inputFormatters: [ref],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
@@ -58,18 +67,56 @@ class NewPessoaForm extends StatelessWidget {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
   }
 
+  String verificarData(PessoaFormBack back) {
+    if (back.pessoa.data == null) {
+      getText();
+    } else {
+      return DateFormat('dd/MM/yyyy').format(back.pessoa.data);
+    }
+  }
+
   Widget fieldData(PessoaFormBack back) {
     var data = MaskTextInputFormatter(mask: '########');
     return TextFormField(
-        onSaved: (newValue)=> back.pessoa.data = DateTime.parse(newValue),
-    initialValue: back.pessoa.data.toString(),
+        validator: back.validacaoData,
+        onTap: () {
+          _selectDate(context);
+          FocusScope.of(context).requestFocus(new FocusNode());
+          print(context);
+        },
+        initialValue: verificarData(back),
         keyboardType: TextInputType.datetime,
         inputFormatters: [data],
         decoration: InputDecoration(
-            labelText: 'Data',
             hintText: '01/01/2021',
-            border:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+            labelText: getText()),
+        onSaved: (newValue) {
+          back.pessoa.data = currentDate;
+        });
+  }
+
+  DateTime currentDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final datainicial = DateTime.now();
+    final DateTime pickedDate = await showDatePicker(
+        context: context,
+        initialDate: datainicial,
+        firstDate: DateTime(datainicial.year - 2),
+        lastDate: DateTime(datainicial.year + 5));
+    if (pickedDate != null)
+      setState(() {
+        currentDate = pickedDate;
+      });
+  }
+
+  String getText() {
+    if (currentDate == null) {
+      return 'Selecione uma Data';
+    } else {
+      return DateFormat('dd/MM/yyyy').format(currentDate);
+    }
   }
 
   @override
@@ -84,10 +131,9 @@ class NewPessoaForm extends StatelessWidget {
               onPressed: () {
                 _form.currentState.validate();
                 _form.currentState.save();
-                if(_back.isValid){
+                if (_back.isValid) {
                   _back.salvar();
-/*                  Navigator.of(context).pop();*/
-                  Navigator.of(context).pushNamed('lista');
+                  Navigator.of(context).pushNamed(MyApp.PESSOA_LISTA);
                 }
               })
         ],

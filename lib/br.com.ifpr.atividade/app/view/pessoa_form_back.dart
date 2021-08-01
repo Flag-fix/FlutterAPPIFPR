@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
+import 'package:mobx/mobx.dart';
 
 class PessoaFormBack{
 
@@ -10,8 +11,9 @@ class PessoaFormBack{
   bool _nameIsValid;
   bool _phoneIsValid;
   bool _referenciaIsValid;
+  bool _dataIsValid;
 
-  bool get isValid =>_nameIsValid && _phoneIsValid && _referenciaIsValid;
+  bool get isValid =>_nameIsValid && _phoneIsValid && _referenciaIsValid && _dataIsValid;
 
   NewPessoa pessoa;
 
@@ -50,6 +52,16 @@ class PessoaFormBack{
       _phoneIsValid = true;
     }catch(e){
       _phoneIsValid = false;
+      return e.toString();
+    }
+  }
+
+  String validacaoData(String data){
+    try{
+      _validate.validarData(data);
+      _dataIsValid = true;
+    }catch(e){
+      _dataIsValid = false;
       return e.toString();
     }
   }

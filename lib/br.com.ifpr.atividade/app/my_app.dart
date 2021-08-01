@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
+  static const PESSOA_LISTA = 'lista';
   static const PESSOA_FORM = 'pessoa-form';
   static const PESSOA_DETAILS = 'pessoa-details';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       routes: {
-        HOME: (context) => PessoaList(),
+        HOME: (context) => MyHomePage(),
+        PESSOA_LISTA: (context) => PessoaList(),
         PESSOA_FORM: (context) => NewPessoaForm(),
         PESSOA_DETAILS:(context) => PessoaDetails()
       },

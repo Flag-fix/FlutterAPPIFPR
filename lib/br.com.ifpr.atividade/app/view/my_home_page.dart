@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../controle_main.dart';
+import '../my_app.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -9,6 +10,32 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+}
+
+Widget botaoTela(String label,BuildContext context, String rota) {
+  return Container(
+    height: 50,
+    alignment: Alignment.centerLeft,
+    decoration: BoxDecoration(
+      color: Colors.deepPurple,
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+    ),
+    child: SizedBox.expand(
+      child: FlatButton(
+        child: Text(
+          label,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(rota);
+        },
+      ),
+    ),
+  );
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -36,19 +63,26 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 200,
               child: Image.asset('assets/img/restaurante.png'),
             ),
-            SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: 30),
             Container(
               child: Center(
                 child: Text(
-                  'Controle de Entrada',
+                  'Lista de Contatos',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.deepPurple,
-                    fontSize: 26
-                  ),
+                      fontSize: 26),
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                children: [
+                  botaoTela('Criar Contato',context, 'pessoa-form'),
+                  SizedBox(height: 15,),
+                  botaoTela('Agenda',context, 'lista'),
+                ],
               ),
             ),
           ],
