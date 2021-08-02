@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279160990689",
+    "project_id": "agenda-4a7e5",
+    "storage_bucket": "agenda-4a7e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279160990689:android:10c5b77f9463444e7f40a0",
+        "android_client_info": {
+          "package_name": "br.com.ifpr.atividade.ifpr_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279160990689-ek6sdvq1sq5lcrnoj9lt4thd5pa4r8gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUL-WokSiZZJxphAaraZmtNtI85kLnpCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279160990689-ek6sdvq1sq5lcrnoj9lt4thd5pa4r8gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
