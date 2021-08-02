@@ -137,6 +137,6 @@ class _PessoaFormState extends State<PessoaForm> {
         data: currentDate,
         foto: foto == null || foto == "" ? foto = avatar : foto = null,
         contato: contato);
-    await service.salvar(itens);
+    await service.save(itens);
   }
 }

@@ -1,37 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/interfaces/pessoa_dao.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 
-class PessoaDaoFirestore {
+class PessoaDaoFirestore implements PessoaDao{
   CollectionReference pessoaCollection;
 
   PessoaDaoFirestore() {
-    pessoaCollection = FirebaseFirestore.instance.collection('contactPessoa');
+    pessoaCollection = FirebaseFirestore.instance.collection('pessoas');
   }
 
-  Future<List<NewPessoa>> buscar() async {
+  @override
+  Future<List<NewPessoa>> find() async{
     var result = await pessoaCollection.get();
     return result.docs
         .map((e) => NewPessoa(
-              id: e.reference.id.toString(),
-              nome: e['nome'],
-              referencia: e['referencia'],
-              contato: e['contato'],
-              data: e['data'],
-              foto: e['foto'],
-            ))
+      id: e.reference.id.toString(),
+      nome: e['nome'],
+      referencia: e['referencia'],
+      contato: e['contato'],
+      data: DateTime.parse(e['data'] as String),
+      foto: e['foto'],
+    ))
         .toList();
   }
 
-  remover(id) {
+  @override
+  remove(id) {
     pessoaCollection.doc(id).delete();
   }
 
-  salvar(NewPessoa pessoa) {
+  @override
+  save(NewPessoa pessoa) {
     pessoaCollection.doc(pessoa.id).set({
       'nome': pessoa.nome,
       'referencia': pessoa.referencia,
       'contato': pessoa.contato,
-      'data': pessoa.data,
+      'data': pessoa.data.toIso8601String(),
       'foto': pessoa.foto,
     });
   }

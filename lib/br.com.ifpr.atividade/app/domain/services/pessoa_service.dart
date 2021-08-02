@@ -1,24 +1,26 @@
+import 'package:get_it/get_it.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/exceptions/domains_layer_exception.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/interfaces/pessoa_dao.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 
 
 class PessoaService{
-  var _dao = DatabaseApp.instance;
+  var _dao = GetIt.I.get<PessoaDao>();
 
-  salvar(NewPessoa pessoa){
+  save(NewPessoa pessoa){
     validarNome(pessoa.nome);
     validarReferencia(pessoa.referencia);
     validarTelefone(pessoa.contato);
-    _dao.insereDadosPessoa(pessoa);
+    _dao.save(pessoa);
   }
 
-  apagarPessoa(dynamic id){
-    _dao.DeletarPessoaId(id);
+  remove(dynamic id){
+    _dao.remove(id);
   }
 
-  Future<List<NewPessoa>> buscarTodasPessoas(){
-    return _dao.buscarTodasPessoas();
+  Future<List<NewPessoa>> find(){
+    return _dao.find();
   }
 
   validarNome(String nome){
