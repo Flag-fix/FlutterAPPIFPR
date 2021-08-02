@@ -32,7 +32,7 @@ abstract class _PessoaListBack with Store{
     Navigator.of(context).pushNamed(MyApp.PESSOA_DETAILS,arguments: pessoa);
   }
 
-  remove(int id){
+  remove(dynamic id){
     _service.DeletarPessoaId(id);
     updateLista();
   }

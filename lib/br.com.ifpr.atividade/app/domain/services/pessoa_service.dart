@@ -13,7 +13,7 @@ class PessoaService{
     _dao.insereDadosPessoa(pessoa);
   }
 
-  apagarPessoa(int id){
+  apagarPessoa(dynamic id){
     _dao.DeletarPessoaId(id);
   }
 

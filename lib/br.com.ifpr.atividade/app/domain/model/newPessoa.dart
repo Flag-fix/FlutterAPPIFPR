@@ -17,7 +17,7 @@ class NewPessoa {
   static final String REFERENCIA = 'referencia';
   static final String DATA = 'data';
 
-  final int id;
+  final dynamic id;
   String nome;
   String contato;
   String foto;
