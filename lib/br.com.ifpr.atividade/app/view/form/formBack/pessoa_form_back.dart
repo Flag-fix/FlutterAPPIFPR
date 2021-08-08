@@ -6,8 +6,6 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_se
 import 'package:mobx/mobx.dart';
 
 class PessoaFormBack{
-
-/*  var _service = DatabaseApp.instance;*/
   var _service = GetIt.I.get<PessoaService>();
   var _validate = PessoaService();
   bool _nameIsValid;
