@@ -4,8 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
 import 'package:mobx/mobx.dart';
-import 'app/database/dataBaseConnection.dart';
-import 'app/my_app.dart';
+
+import '../my_app.dart';
 
 part 'pessoa_list_back.g.dart';
 

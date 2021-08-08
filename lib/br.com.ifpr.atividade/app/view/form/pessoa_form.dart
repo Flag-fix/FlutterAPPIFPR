@@ -49,7 +49,7 @@ class _PessoaFormState extends State<PessoaForm> {
     Pessoa _contact = new Pessoa();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro de Contato'),
+          title: Text('Cadastro de Pessoa'),
           actions: [
             IconButton(
                 icon: Icon(Icons.save),
@@ -94,7 +94,7 @@ class _PessoaFormState extends State<PessoaForm> {
                         foto = value;
                       },
                       decoration: InputDecoration(
-                          labelText: 'URL',
+                          labelText: 'URL da Foto',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)))),
                   SizedBox(height: 15),
@@ -106,7 +106,7 @@ class _PessoaFormState extends State<PessoaForm> {
                       inputFormatters: [ref],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                          labelText: 'Insira uma referencia',
+                          labelText: 'Nº Crachá',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)))),
                   SizedBox(height: 15),

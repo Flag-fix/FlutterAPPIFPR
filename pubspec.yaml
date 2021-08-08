@@ -63,6 +63,8 @@ dependencies:
   firebase_core: ^1.4.0
   cloud_firestore: ^2.4.0
 
+  animated_splash_screen:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
