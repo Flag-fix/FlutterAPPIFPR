@@ -6,7 +6,7 @@ class PessoaDaoFirestore implements PessoaDao{
   CollectionReference pessoaCollection;
 
   PessoaDaoFirestore() {
-    pessoaCollection = FirebaseFirestore.instance.collection('pessoas');
+    pessoaCollection = FirebaseFirestore.instance.collection('cadastroPessoas');
   }
 
   @override
@@ -23,6 +23,8 @@ class PessoaDaoFirestore implements PessoaDao{
     ))
         .toList();
   }
+
+/*  teste*/
 
   @override
   remove(id) {
