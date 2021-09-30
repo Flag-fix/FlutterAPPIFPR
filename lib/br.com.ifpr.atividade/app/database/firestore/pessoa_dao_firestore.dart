@@ -24,8 +24,6 @@ class PessoaDaoFirestore implements PessoaDao{
         .toList();
   }
 
-/*  teste*/
-
   @override
   remove(id) {
     pessoaCollection.doc(id).delete();
