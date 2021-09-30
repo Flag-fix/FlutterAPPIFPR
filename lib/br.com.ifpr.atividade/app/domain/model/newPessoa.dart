@@ -10,7 +10,7 @@ class NewPessoa {
     DATA
   ];
 
-  static final String ID = '_id';
+  static final String ID = 'id';
   static final String NOME = 'nome';
   static final String CONTATO = 'contato';
   static final String FOTO = 'foto';
