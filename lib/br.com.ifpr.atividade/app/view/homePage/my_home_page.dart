@@ -31,11 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: SizedBox.expand(
                       child: FlatButton(
                         child: CardsTelas(
-                          label: "Cadastrar Pessoas",
-                          imagem: AppImages.addPessoa,
+                          label: "Cadastrar Cavalos",
+                          imagem: AppImages.addCavalo,
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed(MyApp.PESSOA_FORM);
+                          Navigator.of(context).pushNamed(MyApp.CAVALO_FORM);
                         },
                       ),
                     ),
@@ -44,11 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: SizedBox.expand(
                       child: FlatButton(
                         child: CardsTelas(
-                          label: "Lista de Pessoas",
-                          imagem: AppImages.listaDePessoas,
+                          label: "Lista de Cavalos",
+                          imagem: AppImages.listaDeCavalos,
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed(MyApp.PESSOA_LISTA);
+                          Navigator.of(context).pushNamed(MyApp.CAVALO_LISTA);
                         },
                       ),
                     ),

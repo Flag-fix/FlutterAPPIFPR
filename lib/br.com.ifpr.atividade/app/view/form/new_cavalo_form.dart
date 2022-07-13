@@ -4,41 +4,41 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/style/app_text_styles.dar
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/appBar/appBar.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/appBar/appBarTelas.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/card/cardCadastro.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/form/formBack/pessoa_form_back.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/form/formBack/cavalo_form_back.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../my_app.dart';
 
-class NewPessoaForm extends StatefulWidget {
-  NewPessoaForm({Key key}) : super(key: key);
+class NewCavaloForm extends StatefulWidget {
+  NewCavaloForm({Key key}) : super(key: key);
 
   @override
-  _NewPessoaFormState createState() => _NewPessoaFormState();
+  _NewCavaloFormState createState() => _NewCavaloFormState();
 }
 
 var data = MaskTextInputFormatter(mask: '########');
 
-class _NewPessoaFormState extends State<NewPessoaForm> {
+class _NewCavaloFormState extends State<NewCavaloForm> {
   final _form = GlobalKey<FormState>();
 
-  Widget fieldName(PessoaFormBack back) {
+  Widget fieldName(CavaloFormBack back) {
     return TextFormField(
         validator: back.validacaoNome,
-        onSaved: (newValue) => back.pessoa.nome = newValue,
-        initialValue: back.pessoa.nome,
+        onSaved: (newValue) => back.cavalo.nome = newValue,
+        initialValue: back.cavalo.nome,
         decoration: InputDecoration(
             labelText: 'Insira um Nome:',
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
   }
 
-  Widget fieldTelefone(PessoaFormBack back) {
+  Widget fieldTelefone(CavaloFormBack back) {
     var tel = MaskTextInputFormatter(mask: '(##) # ####-####');
     return TextFormField(
         validator: back.validacaoTelefone,
-        onSaved: (newValue) => back.pessoa.contato = newValue,
-        initialValue: back.pessoa.contato,
+        onSaved: (newValue) => back.cavalo.contato = newValue,
+        initialValue: back.cavalo.contato,
         keyboardType: TextInputType.phone,
         inputFormatters: [tel],
         decoration: InputDecoration(
@@ -48,22 +48,22 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
   }
 
-  Widget fieldFoto(PessoaFormBack back) {
+  Widget fieldFoto(CavaloFormBack back) {
     return TextFormField(
-        onSaved: (newValue) => back.pessoa.foto = newValue,
-        initialValue: back.pessoa.foto,
+        onSaved: (newValue) => back.cavalo.foto = newValue,
+        initialValue: back.cavalo.foto,
         decoration: InputDecoration(
             labelText: 'URL Foto',
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
   }
 
-  Widget fieldReferencia(PessoaFormBack back) {
+  Widget fieldReferencia(CavaloFormBack back) {
     var ref = MaskTextInputFormatter(mask: 'Ref-######');
     return TextFormField(
         validator: back.validacaoReferencia,
-        onSaved: (newValue) => back.pessoa.referencia = newValue,
-        initialValue: back.pessoa.referencia,
+        onSaved: (newValue) => back.cavalo.referencia = newValue,
+        initialValue: back.cavalo.referencia,
         inputFormatters: [ref],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
@@ -72,15 +72,15 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(15))));
   }
 
-  String verificarData(PessoaFormBack back) {
-    if (back.pessoa.data == null) {
+  String verificarData(CavaloFormBack back) {
+    if (back.cavalo.data == null) {
       getText();
     } else {
-      return DateFormat('dd/MM/yyyy').format(back.pessoa.data);
+      return DateFormat('dd/MM/yyyy').format(back.cavalo.data);
     }
   }
 
-  Widget fieldData(PessoaFormBack back) {
+  Widget fieldData(CavaloFormBack back) {
     var data = MaskTextInputFormatter(mask: '########');
     return TextFormField(
         validator: back.validacaoData,
@@ -97,7 +97,7 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
             labelText: getText()),
         onSaved: (newValue) {
-          back.pessoa.data = currentDate;
+          back.cavalo.data = currentDate;
         });
   }
 
@@ -124,7 +124,7 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
     }
   }
 
-  Widget salvar(PessoaFormBack _back){
+  Widget salvar(CavaloFormBack _back){
     return Padding(
       padding: const EdgeInsets.only(right: 55, left: 55),
       child: Container(
@@ -136,7 +136,7 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
             _form.currentState.save();
             if (_back.isValid) {
               _back.salvar();
-              Navigator.of(context).pushNamed(MyApp.PESSOA_LISTA);
+              Navigator.of(context).pushNamed(MyApp.CAVALO_LISTA);
             }
           },
           child: Row(
@@ -155,7 +155,7 @@ class _NewPessoaFormState extends State<NewPessoaForm> {
 
   @override
   Widget build(BuildContext context) {
-    var _back = PessoaFormBack(context);
+    var _back = CavaloFormBack(context);
     return Scaffold(
       appBar:AppBarTelas("Cadastro",context),
       body: SingleChildScrollView(

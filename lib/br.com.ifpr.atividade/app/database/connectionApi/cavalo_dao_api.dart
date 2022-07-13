@@ -1,28 +1,28 @@
 
 import 'package:dio/dio.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/controller/DioConfig.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/interfaces/pessoa_dao.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/interfaces/cavalo_dao.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
 
-class PessoaDaoApi implements PessoaDao{
+class CavaloDaoApi implements CavaloDao{
 
-  String path = "pessoas";
+  String path = "cavalos";
 
   @override
-  Future<List<NewPessoa>> find() async{
+  Future<List<NewCavalo>> find() async{
     try{
       var dio = DioConfig.builderConfig();
       final Response response = await dio.get(path);
       if(200 == response.statusCode){
         var result = (response.data as List).map((item) {
-          return NewPessoa.fromJson(item);
+          return NewCavalo.fromJson(item);
         }).toList();
         return result;
       }else{
-        return <NewPessoa>[];
+        return <NewCavalo>[];
       }
     }catch(e){
-      return <NewPessoa>[];
+      return <NewCavalo>[];
     }
   }
 
@@ -40,14 +40,14 @@ class PessoaDaoApi implements PessoaDao{
   }
 
   @override
-  save(NewPessoa pessoa) async{
+  save(NewCavalo cavalo) async{
     try{
       var dio = DioConfig.builderConfig();
-      if(pessoa.id == null){
-        await dio.post(path, data: pessoa.toJson());
+      if(cavalo.id == null){
+        await dio.post(path, data: cavalo.toJson());
       }else{
-        String pathMethod = path+"/"+pessoa.id.toString();
-        await dio.put(pathMethod, data: pessoa.toJson());
+        String pathMethod = path+"/"+cavalo.id.toString();
+        await dio.put(pathMethod, data: cavalo.toJson());
       }
     }on DioError catch (e){
       return e;

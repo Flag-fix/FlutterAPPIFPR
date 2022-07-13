@@ -7,7 +7,7 @@ class DioConfig{
   static Dio builderConfig(){
 
       var dio = Dio(BaseOptions(
-        baseUrl: "http://192.168.1.2:8080/",
+        baseUrl: "http://localhost:8080/api/",
         connectTimeout: 30*1000,
         receiveTimeout: 30*1000,)
       );
@@ -15,8 +15,7 @@ class DioConfig{
       // if (Platform.isAndroid) {
       //   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
       //       (client) {
-      //     client.badCertificateCallback =
-      //         (X509Certificate cert, String host, int port) => true;
+      //     client.badCertificateCallback =      //         (X509Certificate cert, String host, int port) => true;
       //     return client;
       //   };
       // }

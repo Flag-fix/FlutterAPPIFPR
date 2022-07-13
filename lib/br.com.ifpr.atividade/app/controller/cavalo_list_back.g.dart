@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pessoa_list_back.dart';
+part of 'cavalo_list_back.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,33 +8,33 @@ part of 'pessoa_list_back.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PessoaListBack on _PessoaListBack, Store {
-  final _$listaAtom = Atom(name: '_PessoaListBack.lista');
+mixin _$CavaloListBack on _CavaloListBack, Store {
+  final _$listaAtom = Atom(name: '_CavaloListBack.lista');
 
   @override
-  Future<List<NewPessoa>> get lista {
+  Future<List<NewCavalo>> get lista {
     _$listaAtom.reportRead();
     return super.lista;
   }
 
   @override
-  set lista(Future<List<NewPessoa>> value) {
+  set lista(Future<List<NewCavalo>> value) {
     _$listaAtom.reportWrite(value, super.lista, () {
       super.lista = value;
     });
   }
 
-  final _$_PessoaListBackActionController =
-      ActionController(name: '_PessoaListBack');
+  final _$_CavaloListBackActionController =
+      ActionController(name: '_CavaloListBack');
 
   @override
   dynamic updateLista([dynamic value]) {
-    final _$actionInfo = _$_PessoaListBackActionController.startAction(
-        name: '_PessoaListBack.updateLista');
+    final _$actionInfo = _$_CavaloListBackActionController.startAction(
+        name: '_CavaloListBack.updateLista');
     try {
       return super.updateLista(value);
     } finally {
-      _$_PessoaListBackActionController.endAction(_$actionInfo);
+      _$_CavaloListBackActionController.endAction(_$actionInfo);
     }
   }
 

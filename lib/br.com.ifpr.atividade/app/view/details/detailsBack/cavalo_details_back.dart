@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-class PessoaDetailsBack{
+class CavaloDetailsBack{
   BuildContext context;
-  NewPessoa pessoa;
+  NewCavalo cavalo;
 
-  PessoaDetailsBack(this.context){
-    pessoa = ModalRoute.of(context).settings.arguments;
+  CavaloDetailsBack(this.context){
+    cavalo = ModalRoute.of(context).settings.arguments;
   }
 
   goToBack(){
@@ -21,10 +21,10 @@ class PessoaDetailsBack{
   }
 
   lauchPhone(Function (BuildContext context) showModalError){
-    _launchApp('tel:${pessoa.contato}', showModalError);
+    _launchApp('tel:${cavalo.contato}', showModalError);
   }
   lauchMessage(Function (BuildContext context) showModalError){
-    _launchApp('sms:${pessoa.contato}', showModalError);
+    _launchApp('sms:${cavalo.contato}', showModalError);
   }
 
 }

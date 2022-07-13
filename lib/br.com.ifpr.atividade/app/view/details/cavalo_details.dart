@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/details/detailsBack/pessoa_details_back.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/details/detailsBack/cavalo_details_back.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class PessoaDetails extends StatelessWidget {
-  const PessoaDetails({Key key}) : super(key: key);
+class CavaloDetails extends StatelessWidget {
+  const CavaloDetails({Key key}) : super(key: key);
 
   showModalError(BuildContext context) {
     showDialog(
@@ -19,8 +19,8 @@ class PessoaDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _back = PessoaDetailsBack(context);
-    NewPessoa pessoa = _back.pessoa;
+    var _back = CavaloDetailsBack(context);
+    NewCavalo cavalo = _back.cavalo;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       var width = constraints.biggest.width;
@@ -31,9 +31,9 @@ class PessoaDetails extends StatelessWidget {
           padding: const EdgeInsets.all(60),
           child: ListView(
             children: [
-              (Uri.tryParse(pessoa.foto).isAbsolute)
+              (Uri.tryParse(cavalo.foto).isAbsolute)
                   ? CircleAvatar(
-                      backgroundImage: NetworkImage(pessoa.foto),
+                      backgroundImage: NetworkImage(cavalo.foto),
                       radius: radius,
                     )
                   : CircleAvatar(
@@ -45,14 +45,14 @@ class PessoaDetails extends StatelessWidget {
                     ),
               Center(
                 child: Text(
-                  '${pessoa.nome}',
+                  '${cavalo.nome}',
                   style: TextStyle(fontSize: 25),
                 ),
               ),
               Card(
                 child: ListTile(
                   title: Text('Telefone:'),
-                  subtitle: Text('${pessoa.contato}'),
+                  subtitle: Text('${cavalo.contato}'),
                   trailing: Container(
                     width: width / 4,
                     child: Row(
@@ -81,7 +81,7 @@ class PessoaDetails extends StatelessWidget {
               Card(
                 child: ListTile(
                   title: Text('Nº Crachá:'),
-                  subtitle: Text('${pessoa.referencia}'),
+                  subtitle: Text('${cavalo.referencia}'),
                 ),
               ),
             ],

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/data/data.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/cavalo.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/cavalo_service.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class PessoaForm extends StatefulWidget {
+class CavaloForm extends StatefulWidget {
   @override
-  _PessoaFormState createState() => _PessoaFormState();
+  _CavaloFormState createState() => _CavaloFormState();
 }
 
-class _PessoaFormState extends State<PessoaForm> {
+class _CavaloFormState extends State<CavaloForm> {
   final _form = GlobalKey<FormState>();
   var avatar = "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png";
-  PessoaService service = PessoaService();
+  CavaloService service = CavaloService();
 
   DateTime currentDate;
 
@@ -46,10 +45,10 @@ class _PessoaFormState extends State<PessoaForm> {
   }
   @override
   Widget build(BuildContext context) {
-    Pessoa _contact = new Pessoa();
+    Cavalo _contact = new Cavalo();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro de Pessoa'),
+          title: Text('Cadastro de Cavalo'),
           actions: [
             IconButton(
                 icon: Icon(Icons.save),
@@ -131,7 +130,7 @@ class _PessoaFormState extends State<PessoaForm> {
   }
 
   Future salvar() async {
-    final itens = NewPessoa(
+    final itens = NewCavalo(
         nome: nome,
         referencia: referencia,
         data: currentDate,

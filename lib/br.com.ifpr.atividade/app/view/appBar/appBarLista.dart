@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/controller/pessoa_list_back.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/controller/cavalo_list_back.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/style/app_colors.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/style/app_text_styles.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/card/cardInicial.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/card/cardLista.dart';
 class AppBarLista extends PreferredSize {
-  AppBarLista(BuildContext context, PessoaListBack _back)
+  AppBarLista(BuildContext context, CavaloListBack _back)
       : super(
       preferredSize: Size.fromHeight(90),
       child: AppBar(
@@ -37,7 +37,7 @@ class AppBarLista extends PreferredSize {
               Align(
                 alignment: Alignment(0.0, 1.5),
                 child: CardLista(
-                  label: "Pessoas",
+                  label: "Cavalos",
                 ),
               )
             ]),

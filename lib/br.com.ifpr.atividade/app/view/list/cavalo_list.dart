@@ -1,8 +1,8 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/controller/pessoa_list_back.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/controller/cavalo_list_back.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/pessoa.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/cavalo.dart';
 import 'package:flutter/material.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/my_app.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/style/app_colors.dart';
@@ -13,13 +13,13 @@ import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/card/cardLista.dart'
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/view/card/cardsTelas.dart';
 
 
-class PessoaList extends StatefulWidget {
+class CavaloList extends StatefulWidget {
   @override
-  _PessoaListState createState() => _PessoaListState();
+  _CavaloListState createState() => _CavaloListState();
 }
 
-class _PessoaListState extends State<PessoaList> {
-  final _back = PessoaListBack();
+class _CavaloListState extends State<CavaloList> {
+  final _back = CavaloListBack();
 
   CircleAvatar avatar(String url) {
     return (Uri.tryParse(url).isAbsolute)
@@ -69,7 +69,7 @@ class _PessoaListState extends State<PessoaList> {
                     if (!index.hasData) {
                       return CircularProgressIndicator();
                     } else {
-                      List<NewPessoa> _list = index.data;
+                      List<NewCavalo> _list = index.data;
                       return
                         ListView.builder(
                         padding: const EdgeInsets.all(2.0),

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ifpr_flutter/br.com.ifpr.atividade/app/database/dataBaseConnection.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newPessoa.dart';
-import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/pessoa_service.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/model/newCavalo.dart';
+import 'package:ifpr_flutter/br.com.ifpr.atividade/app/domain/services/cavalo_service.dart';
 import 'package:mobx/mobx.dart';
 
-class PessoaFormBack{
-  var _service = GetIt.I.get<PessoaService>();
-  var _validate = PessoaService();
+class CavaloFormBack{
+  var _service = GetIt.I.get<CavaloService>();
+  var _validate = CavaloService();
   bool _nameIsValid;
   bool _phoneIsValid;
   bool _referenciaIsValid;
@@ -15,15 +15,15 @@ class PessoaFormBack{
 
   bool get isValid =>_nameIsValid && _phoneIsValid && _referenciaIsValid && _dataIsValid;
 
-  NewPessoa pessoa;
+  NewCavalo cavalo;
 
-  PessoaFormBack(BuildContext context){
+  CavaloFormBack(BuildContext context){
     var param = ModalRoute.of(context).settings.arguments;
-    pessoa = (param == null) ? NewPessoa() : param;
+    cavalo = (param == null) ? NewCavalo() : param;
   }
 
   salvar() async{
-    await _service.save(pessoa);
+    await _service.save(cavalo);
   }
 
   String validacaoNome(String nome){
